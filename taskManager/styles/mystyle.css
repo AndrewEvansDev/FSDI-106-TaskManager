@@ -1,0 +1,178 @@
+:root{
+    --bg-color:#2b293c;
+    --txt-color:#c4c2d5;    
+    --sec-color:#6c6797;
+    --third-color:#403d5b;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-image: linear-gradient(135deg, var(--sec-color) 0%, var(--bg-color) 100%);
+    color:var(--txt-color);
+}
+
+
+h1{
+    text-align: center;
+    padding:2rem 1rem;
+    background-color: var(--bg-color);
+    color:var(--txt-color);
+    font-weight: 900;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:3rem;
+}
+h1 img{
+    width:70px;
+    filter:invert(80%);
+}
+
+.myContainer{
+    display: flex;
+}
+
+#list{
+    width:69%;
+    margin:1rem;
+}
+#list h3{
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:2rem;
+    padding:0 0 1rem 0;
+    font-weight:600;
+    color:var(--txt-color)
+}
+#pendingTasks{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:1rem;
+}
+@media(max-width:768px){
+    #pendingTasks{
+        display:block;
+    }
+    .task-item{
+    margin:1rem;
+    }
+    #list{
+        width:100%;
+        order:2;
+    }
+    #details{
+        min-width:100%;
+        order:1;
+        margin-right:0;
+    }
+    .myContainer{
+        flex-direction:column;
+    }
+}
+.task-item{
+    width:1fr;
+    padding:1rem;
+    background-color:var(--bg-color);
+    color:var(--txt-color);
+    border-radius:10px;
+}
+
+
+
+#details{
+    width:30%;
+    background-color: var(--sec-color);
+    padding:1rem;
+    margin-right:1rem;
+}
+
+.unimportant{
+    border:5px solid var(--third-color);
+}
+.important{
+    border:5px solid #cd7e9c;
+    font-weight:900;
+}
+
+#iconImp{
+    font-size:35px;
+    margin-left:3rem;
+}
+#iconImp:hover{
+    cursor: pointer;
+}
+#iconImp.far{
+
+}
+#iconImp.fas{
+    color:#cd7e9c;
+}
+
+[type="date"] {
+    background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+
+    label .coc-block-label{
+    display: block;
+}
+    input .coc-input{
+    border: 1px solid #c4c4c4;
+    background-color: #fff;  
+    width: 95px;
+    }
+
+    .coc-block-row {
+    width: 100%;
+}
+.coc-block {
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: 3px;
+}
+.coc-block-label {
+    font-family: Verdana;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding-bottom: 3px;
+    padding-right: 5px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.coc-input {
+    font-family: Calibri;
+    height: 20px;
+    font-size: 12px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: 1px solid #999;
+}
+.coc-form {
+    padding-top: 5px;
+    padding-left: 8px;
+}
+
+#btnSave{
+    background-color:var(--txt-color);
+    color:var(--bg-color);
+    width:100%;
+    font-size:1.5rem;
+
+}
+#btnSave:hover{
+    background-color: var(--bg-color);
+    color:var(--txt-color);
+}
+#txtDescription{
+    margin-bottom:1rem;
+    height:6rem;
+}
