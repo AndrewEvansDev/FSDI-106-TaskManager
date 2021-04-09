@@ -26,7 +26,8 @@
         </section>
 
         <section class="unimportant" id="details">
-            <h3><span><i id="iconImp" class="far fa-star"></i></span><span id="h3"span>Add Task </span> </h3>
+            <h3><span id="h3"span>Add Task </span> </h3>
+            <span><i id="hideShow" class="fas fa-eye-slash"></i></span>
 
             <div class="picker">
                 <div class="form-group m-1">
@@ -41,8 +42,7 @@
                             </span>
                         </span>
                         <!-- Accepts the input from calendar -->
-                        <input id="calinput" class="form-control" type="text" placeholder="Assign due date" 
-                            name="dob" id="txtDueDate" value="">
+                        <input class="calinput form-control" type="text" placeholder="Assign due date" name="txtDueDate" id="txtDueDate">
                     </div>
                 </div>
             </div>
@@ -68,9 +68,11 @@
             </div>
 
 
-    <button id="btnSave" class="btn">Save <i class="far fa-check-circle"></i></button>
+    <button id="btnSave" class="btn">Save <i class="far fa-check-circle"></i></button> <span><i id="iconImp" class="far fa-star"></i></span>
             
-
+    <div class="alert alert-danger" role="alert"id="msgFail">
+        Something is wrong with the form and it cannot be submitted.
+    </div>
         </section>
 
     </main>

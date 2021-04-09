@@ -1,6 +1,7 @@
 var important = false;
 var UI = {};
-var serverUrl = "http://fsdi.azurewebsites.net/api"
+var serverUrl = "http://fsdi.azurewebsites.net/api";
+var myTasks = [];
 
 
 function toggleImportant(){
@@ -24,6 +25,26 @@ function saveTask(){
     var location = UI.location.val();
     var alertText = UI.alertText.val();
     console.log(title, description, dueDate,location,alertText);
+
+//validations AND create a dynamic message depending on the error
+
+if(title.length < 5){
+    $('#msgFail').append(' Not enough characters task name, please try again.').show()
+    setTimeout(function(){
+        $('#msgFail').text('Something is wrong with the form and it cannot be submitted.').hide()},7000
+    )
+
+
+let descLength = description.length
+if(descLength >= 1 &&descLength <=30){
+    $('#msgFail').append(' You need between 1-30 characters.').show()
+    setTimeout(function(){
+        $('#msgFail').text('Something is wrong with the form and it cannot be submitted.').hide()},7000
+    )
+    return;
+}}
+
+
     var taskToBeSaved = new Task(title,description,important,dueDate,location,alertText);
     console.log(taskToBeSaved);
     
@@ -41,7 +62,7 @@ function saveTask(){
             console.log("Error/fail",error);
         }
     })
-
+    clearForm()
 }
 
 function fetchTasks(){
@@ -54,6 +75,7 @@ function fetchTasks(){
                 let task = res[i];
                 if(task.user === "AndrewEvans"){
                     displayTask(task)
+                    myTasks.push(task)
                 };
                 
             }
@@ -77,6 +99,8 @@ function init(){
     $('#iconImp').click(toggleImportant);
     $('#btnSave').click(saveTask);
 }
+
+//redo date function >.<
 function convertDate(date){
     var toslice = date.dueDate;
     var year = toslice.substring(0,4);
@@ -92,9 +116,20 @@ function getMonthName(month){
     return monthName;
 }
 
+function clearForm(){
+    UI.title.val("");
+    UI.description.val("");
+    UI.dueDate.val("");
+    UI.location.val("");
+    UI.alertText.val("");
+    if(important)toggleImportant();
+}
+function changeDate(date){
+    let newDate = new Date(date)
+}
 
 function displayTask(task){
-    let syntax = `<div class="task-item">
+    let syntax = `<div onclick="taskClick(${task.id}) "class="task-item">
     <h5>${task.title}</h5>
     <p>${task.description}</p>
     ${convertDate(task)}
@@ -112,7 +147,39 @@ $( "#iconImp" ).hover(
     }
     );
 
+//make this work to toggle the #details menu
+// const hideBtn = $('#hideShow')
+// const addTask = $('#details');
+// hideBtn.click(function(){
+//     //change task icon class between fa-eye or fa-eye-slash
+//     if($(addTask).is(":visible")){
+//         addTask.hide()
+//         hideBtn.addClass('fa-eye').removeClass('fa-eye-slash')
+//     }
+//     else{
+//         addTask.show()
+//         hideBtn.addClass('fa-eye-slash').removeClass('fa-eye')
+//     }
+// };
 
+function taskClick(id){
+    console.log("task was clicked",id);
+    for(var i=0; i < myTasks.length; i++){
+        var task = myTasks[i]
+        if(task.id == id){
+            
+            
+            console.log(task)
+            UI.title.val(task.title);
+            UI.description.val(task.description);
+            UI.dueDate.val(task.dueDate);
+            UI.location.val(task.location);
+            UI.alertText.val(task.alertText);
+            important= !task.important;
+            toggleImportant();
+        }
+    }
+}
 
 window.onload=init;
 
