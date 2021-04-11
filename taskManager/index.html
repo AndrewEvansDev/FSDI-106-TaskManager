@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,25 +11,41 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/calendar.css">
+    <link rel="stylesheet" href="styles/radio.css">
 
     <title>Task Manager</title>
 </head>
+
 <body>
-    <h1><img src="svg/001-goal.svg" alt="">   Task Manager</h1>
-
+    <h1><img src="svg/001-goal.svg" alt=""> Task Manager</h1>
+    <div class="hideShow"><img src="img/taskicon.png"></div>
     <main class="myContainer">
-        
+
         <section id="list">
-            <h3>Your Tasks</h3>
-            <div class="unimportant" id="pendingTasks"></div>
-
-
+            <div id="pendingTasks"></div>
         </section>
 
         <section class="unimportant" id="details">
-            <h3><span id="h3"span>Add Task </span> </h3>
-            <span><i id="hideShow" class="fas fa-eye-slash"></i></span>
+            <div class="radio-wrap">
+            <h4>Priority Level</h4>
+            <div class="radioFlex">
+                <label class="radio radio-before">
+                    <span class="radio__input">
+                        <input type="radio" name="importance" id="important" value="true">
+                        <span class="radio__control"></span>
+                    </span>
+                    <span class="radio__label">High</span>
+                </label>
 
+                <label class="radio radio-before">
+                    <span class="radio__input">
+                        <input type="radio" name="importance" id="notImportant" value="false">
+                        <span class="radio__control"></span>
+                    </span>
+                    <span class="radio__label">Low</span>
+                </label>
+            </div>
+            </div>
             <div class="picker">
                 <div class="form-group m-1">
                     <!-- Input field along with 
@@ -37,12 +54,12 @@
                         <!-- Sets the calendar icon -->
                         <span class="input-group-prepend">
                             <span class="input-group-text">
-                                <i id="cal" class="far fa-calendar-alt" 
-                                onclick="setDatepicker(this)"></i>
+                                <i id="cal" class="far fa-calendar-alt" onclick="setDatepicker(this)"></i>
                             </span>
                         </span>
                         <!-- Accepts the input from calendar -->
-                        <input class="calinput form-control" type="text" placeholder="Assign due date" name="txtDueDate" id="txtDueDate">
+                        <input class="calinput form-control" type="text" placeholder="Assign due date" name="txtDueDate"
+                            id="txtDueDate">
                     </div>
                 </div>
             </div>
@@ -59,20 +76,20 @@
 
             <div class="form-floating mb-3">
                 <input type="text" id="txtLocation" class="form-control" placeholder="Task location">
-                <label for="floatingInput">Task location</label>                
+                <label for="floatingInput">Task location</label>
             </div>
 
             <div class="form-floating mb-3">
                 <input type="text" id="txtAlert" class="form-control" placeholder="Alert message">
-                <label for="floatingInput">Alert message</label>                
+                <label for="floatingInput">Alert message</label>
             </div>
 
 
-    <button id="btnSave" class="btn">Save <i class="far fa-check-circle"></i></button> <span><i id="iconImp" class="far fa-star"></i></span>
-            
-    <div class="alert alert-danger" role="alert"id="msgFail">
-        Something is wrong with the form and it cannot be submitted.
-    </div>
+            <button id="btnSave" class="btn btnSaveUnimp">Save <i class="far fa-check-circle"></i></button>
+
+            <div class="alert alert-danger" role="alert" id="msgFail">
+                Something is wrong with the form and it cannot be submitted.
+            </div>
         </section>
 
     </main>
@@ -81,17 +98,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src=
-    "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity=
-    "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous">
-        </script>
-        <script src=
-        "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
-            </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
+    </script>
     <script src="scripts/task.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/calendar.js"></script>
 </body>
+
 </html>

@@ -19,56 +19,78 @@ h1{
     text-align: center;
     padding:2rem 1rem;
     background-color: var(--bg-color);
+    background-image:url(../img/005-genetic.webp);
     color:var(--txt-color);
     font-weight: 900;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size:3rem;
+    
 }
 h1 img{
     width:70px;
     filter:invert(80%);
 }
+@media(max-width:768px){
+    h1{
+        font-size:2.5rem;
+        padding:2rem 1rem 0.2rem 1rem;
+        border-bottom: 7px solid  var(--bg-color);
+    }
+    h1 img{
+        width:50px;
+    }
+    div.hideShow{
+        margin-top:-2.3rem;
+        margin-right:2rem;
+        /* margin-bottom:3rem; */
+        padding:0;
+}
+    .hideShow span{
+        display:none;
+    }
 
+}
 .myContainer{
     display: flex;
+    height:fit-content;
 }
 
 #list{
     width:69%;
     margin:1rem;
 }
-#list h3{
-    text-align: center;
-    margin-left:auto;
-    margin-right:auto;
-    font-size:2rem;
-    padding:0 0 1rem 0;
-    font-weight:600;
-    color:var(--txt-color)
-}
 #pendingTasks{
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
     grid-gap:1rem;
+    width:100%;
 }
 @media(max-width:768px){
     #pendingTasks{
         display:block;
+        width:100%;
     }
     .task-item{
-    margin:1rem;
+        margin:1rem 0;
+        width:100%;
+        padding:1rem;
+        
     }
     #list{
         width:100%;
         order:2;
+        margin:1rem 0 0 0;
     }
     #details{
         min-width:100%;
         order:1;
         margin-right:0;
+        margin-top:-.75rem;
+        border:none;
     }
     .myContainer{
         flex-direction:column;
+        height:100%;
     }
 }
 .task-item{
@@ -77,15 +99,29 @@ h1 img{
     background-color:var(--bg-color);
     color:var(--txt-color);
     border-radius:10px;
+    min-height:200px;
 }
+.itemHeader{
+    display:flex;
+    justify-content: space-between;
+}
+.taskh5{
+    flex:1;
+    font-;
+}
+.taskIcon{
+    text-align: right;
+}
+.taskDesc{
+    display:none;
 
-
-
+}
 #details{
     width:30%;
     background-color: var(--sec-color);
     padding:1rem;
     margin-right:1rem;
+    height:fit-content;
 }
 
 .unimportant{
@@ -93,12 +129,10 @@ h1 img{
 }
 .important{
     border:5px solid #cd7e9c;
-    font-weight:900;
 }
 
 #iconImp{
-    font-size:35px;
-    margin-left:3rem;
+    font-size:25px;
 }
 #iconImp:hover{
     cursor: pointer;
@@ -163,14 +197,18 @@ h1 img{
 
 #btnSave{
     background-color:var(--txt-color);
-    color:var(--bg-color);
     width:100%;
     font-size:1.5rem;
-
+}
+.btnSaveUnimp{
+    color:var(--bg-color);
 }
 #btnSave:hover{
     background-color: var(--bg-color);
     color:var(--txt-color);
+}
+.btnSaveImp{
+    color:#cd7e9c;
 }
 #txtDescription{
     margin-bottom:1rem;
@@ -179,6 +217,44 @@ h1 img{
 #msgFail{
     display:none;
 }
+
+.inputFail{
+    background-color:rgb(255, 146, 146);
+
+}
+
 #hideShow{
     font-size:2rem;
+}
+.hideShow{
+    margin-left:auto;
+    margin-right:1rem;
+    text-align:right;
+    padding:1rem;
+    
+}
+.hideShow img{
+    width:100px;
+}
+.hideShow span{
+    font-size:2rem;
+}
+.importantToggle{
+    display:flex;
+    justify-content: space-between;
+}
+
+.spinner {
+    transform-box: fill-box;
+    animation: spin 2s linear infinite;
+    transform-origin:50% 50%;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% {  transform: rotate(359deg); }
+}
+.border-fix{
+    border-top:none;
 }

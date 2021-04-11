@@ -1,5 +1,4 @@
 function setDatepicker(_this) {
-  
     /* Get the parent class name so we 
         can show date picker */
     let className = $(_this).parent()
@@ -10,7 +9,7 @@ function setDatepicker(_this) {
 
     // jQuery class selector
     $("." + removeSpace).datepicker({
-        format: "dd/mm/yyyy",
+        format: "mm/dd/yyyy",
 
         // Positioning where the calendar is placed
         orientation: "bottom auto",
