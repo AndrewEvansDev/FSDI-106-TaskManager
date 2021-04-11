@@ -196,15 +196,13 @@ function displayTask(task) {
 // );
 
 
-$('#hideShow').click(function() {
+$('#hideShow img').click(function() {
     if($('#details').is(":visible")) {
         $('#details').slideUp();
-        $('#hideShow').addClass('fa-caret-up').removeClass('fa-caret-down');
         $('.hideShow span').text('Show ')
         $('#list').css('width','100%')
     } else {
         $('#details').slideDown();
-        $('#hideShow').addClass('fa-caret-down').removeClass('fa-caret-up');
         $('.hideShow span').text('Hide ')
         $('#list').css('width','69%')
     }
