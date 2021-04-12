@@ -149,7 +149,6 @@ function displayTask(task) {
     let syntax;
     var aDate = new Date(task.dueDate);
     var bDate = aDate.toLocaleDateString();
-
     if(task.important===true){
 
         syntax = `<div onclick="taskClick(${task.id})" class="important task-item">
@@ -182,6 +181,7 @@ function displayTask(task) {
     $("#pendingTasks").append(syntax);
 }
 
+
 // $("#iconImp").hover(
 //     function () {
 //         $("#h3")
@@ -196,15 +196,17 @@ function displayTask(task) {
 // );
 
 
-$('#hideShow img').click(function() {
+$('#hideShow').click(function() {
     if($('#details').is(":visible")) {
         $('#details').slideUp();
-        $('.hideShow span').text('Show ')
-        $('#list').css('width','100%')
+        $('.hideShow span').text('show');
+        $('#list').css('width','100%');
+        $('.hideShow span').css('margin-left','-6.2rem')
     } else {
         $('#details').slideDown();
-        $('.hideShow span').text('Hide ')
+        $('.hideShow span').text('hide')
         $('#list').css('width','69%')
+        $('.hideShow span').css('margin-left','-5.5rem')
     }
     });
 
@@ -226,6 +228,14 @@ function taskClick(id) {
         }
     }
 }
+const mArr =
+["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
+function monthString(m){
+    for(var i=0;i<mArr.length;i++){
+        if(mArr[m-1]==mArr[i]){
+            console.log(mArr[i])
+        }
+}}
 
 $("input#important").click(function(){
     $("section#details").addClass("important").removeClass("unimportant");

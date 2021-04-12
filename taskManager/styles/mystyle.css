@@ -39,16 +39,6 @@ h1 img{
     h1 img{
         width:50px;
     }
-    div.hideShow{
-        margin-top:-2.3rem;
-        margin-right:2rem;
-        /* margin-bottom:3rem; */
-        padding:0;
-}
-    .hideShow span{
-        display:none;
-    }
-
 }
 .myContainer{
     display: flex;
@@ -222,23 +212,32 @@ h1 img{
     background-color:rgb(255, 146, 146);
 
 }
-
-#hideShow{
-    font-size:2rem;
+.hideShow:hover{
+    cursor:pointer;
+    text-shadow: 2px 2px 5px white, 2px 2px 5px white, 2px 2px 5px white, 2px 2px 5px white
 }
 .hideShow{
-    margin-left:auto;
-    margin-right:1rem;
+    margin:-4.5rem 3rem 1.5rem auto;
     text-align:right;
-    padding:1rem;
-    
+    width:fit-content;
 }
 .hideShow img{
-    width:100px;
+    width:35px;
 }
 .hideShow span{
     font-size:2rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 2px 2px var(--bg-color);
 }
+@media(max-width:530px){
+    .hideShow{
+    }
+    h1{
+        padding-left:1rem;
+        text-align:left;
+    }
+}
+
 .importantToggle{
     display:flex;
     justify-content: space-between;
