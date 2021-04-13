@@ -63,6 +63,24 @@ function saveTask() {
         }, 7000);
         return;
         }
+    if (description.length < 20||description.length>220) {
+        $("#msgFail").show();
+        $("input#txtLocation").addClass("inputFail").val("max 20 characters");
+        setTimeout(function () {
+            $("#msgFail").hide();
+            $("input#txtLocation").removeClass("inputFail").val("");
+        }, 7000);
+        return;
+        }
+    if (location.length < 5) {
+        $("#msgFail").show();
+        $("input#txtLocation").addClass("inputFail").val("min 5 characters");
+        setTimeout(function () {
+            $("#msgFail").hide();
+            $("input#txtLocation").removeClass("inputFail").val("");
+        }, 7000);
+        return;
+        }
     if (alertText.length > 20) {
         $("#msgFail").show();
         $("input#txtAlert").addClass("inputFail").val("max 20 characters");
@@ -117,7 +135,6 @@ function fetchTasks() {
     });
 }
 
-
 function init() {
     UI.id = $("#txtId");
     UI.title = $("#txtTitle");
@@ -151,27 +168,45 @@ function displayTask(task) {
     var bDate = aDate.toLocaleDateString();
     if(task.important===true){
 
-        syntax = `<div onclick="taskClick(${task.id})" class="important task-item">
+        syntax=`
+        <div class="important task-item">
+        <div class="extraWrap">
         <div class="itemHeader">
-            <div class="taskh5"><h5>${task.title} </h5></div>
-            <div class="taskIcon"><i id="iconImp" class="fas fa-star"></i></div>
+            <div class="taskh5"><h5>${task.title}</h5></div>
+            <div class="itemDate">${bDate}</div>
         </div>
-        <div class="taskDesc">${task.description}</div>
-        ${bDate}
-        ${task.location}
-        ${task.alertText}
-        </div>`
+        <div class="iconExpand"><i onclick="expTask(${task.id})" class="fas fa-eye-slash"></i></div>
+        </div>
+        <div class="iconAlertWrap">
+        <div id="${task.id}alert" class="itemAlert">${task.alertText}</div>
+            <div class="taskIcon"><i class="fas fa-map-marker-alt"></i><i class="fas fa-star-half-alt"></i><i onclick="taskClick(${task.id})" class="fas fa-pen-square"></i></div>
+        
+        </div>
+        
+        <div id="${task.id}loc" class="itemLoc"><i class="fas fa-map-marker"></i>${task.location} </div>
+        <div id="${task.id}desc" class="taskDesc">${task.description}</div>
+    </div>
+        `
     }else{
-        syntax = `<div onclick="taskClick(${task.id})" class="unimportant task-item">
+        syntax = `     
+        <div class="unimportant task-item">
+        <div class="extraWrap">
         <div class="itemHeader">
-            <div class="taskh5"><h5>${task.title} </h5></div>
-            <div class="taskIcon"><i id="iconImp" class="far fa-star"></i></div>
+            <div class="taskh5"><h5>${task.title}</h5></div>
+            <div class="itemDate">${bDate}</div>
         </div>
-        <div class="taskDesc">${task.description}</div>
-        ${bDate}
-        ${task.location}
-        ${task.alertText}
-        </div>`
+        <div class="iconExpand"><i onclick="expTask(${task.id})" class="fas fa-eye-slash"></i></div>
+        </div>
+        <div class="iconAlertWrap">
+        <div id="${task.id}alert" class="itemAlert">${task.alertText}</div>
+            <div class="taskIcon"><i class="fas fa-map-marker-alt"></i><i class="fas fa-star-half-alt"></i><i onclick="taskClick(${task.id})" class="fas fa-pen-square"></i></div>
+        
+        </div>
+        
+        <div id="${task.id}loc" class="itemLoc"><i class="fas fa-map-marker"></i>${task.location} </div>
+        <div id="${task.id}desc" class="taskDesc">${task.description}</div>
+        </div>
+        `
         }
     
 
@@ -181,19 +216,33 @@ function displayTask(task) {
     $("#pendingTasks").append(syntax);
 }
 
+function expTask(id){
+for (var i = 0; i < myTasks.length; i++){
+        let it = myTasks[i].id;
+    if(id==it){
+        
+        var loc = `div#${id}loc.itemLoc`;
+        var desc = `div#${id}desc.taskDesc`; 
+        var alert = `div#${id}alert.itemAlert`;
+        console.log(alert,desc,loc)
+        if($(desc).is(":visible")){
+        $(desc).hide();
+        $(loc).hide();
+        $(alert).show();
+    }    else{
+        $(desc).show();
+        $(loc).show();
+        $(alert).hide();
+    }
+    }
+}}
 
-// $("#iconImp").hover(
-//     function () {
-//         $("#h3")
-//             .css("color", "#cd7e9c")
-//             .css("font-size", "1.3rem");
-//     },
-//     function () {
-//         $("#h3")
-//             .css("color", "#c4c2d5")
-//             .css("font-size", "1.75rem");
-//     }
-// );
+
+
+
+
+
+
 
 
 $('#hideShow').click(function() {
@@ -201,12 +250,12 @@ $('#hideShow').click(function() {
         $('#details').slideUp();
         $('.hideShow span').text('show');
         $('#list').css('width','100%');
-        $('.hideShow span').css('margin-left','-6.2rem')
+        // $('.hideShow span').css('margin-left','-6.2rem')
     } else {
         $('#details').slideDown();
         $('.hideShow span').text('hide')
         $('#list').css('width','69%')
-        $('.hideShow span').css('margin-left','-5.5rem')
+        // $('.hideShow span').css('margin-left','-5.5rem')
     }
     });
 
@@ -228,14 +277,6 @@ function taskClick(id) {
         }
     }
 }
-const mArr =
-["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
-function monthString(m){
-    for(var i=0;i<mArr.length;i++){
-        if(mArr[m-1]==mArr[i]){
-            console.log(mArr[i])
-        }
-}}
 
 $("input#important").click(function(){
     $("section#details").addClass("important").removeClass("unimportant");

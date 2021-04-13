@@ -39,7 +39,56 @@ h1 img{
     h1 img{
         width:50px;
     }
+    div#hideShow{
+        margin-right:1rem;
+    }
 }
+#shtxt:hover, div#hideShow:hover{
+    filter:brightness(80%);
+    cursor:pointer;
+}
+.hideShow{
+    margin:-4.5rem 3rem 1.5rem auto;
+    text-align:right;
+    width:fit-content;
+}
+.hideShow img{
+    width:35px;
+}
+.hideShow span{
+    font-size:2rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 2px 2px var(--bg-color);
+}
+@media(max-width:530px){
+  
+    h1{
+        padding-left:1rem;
+        text-align:left;
+    }
+}
+@media(max-width:430px){
+    h1 img{
+        display:none;
+    }
+    h1{margin-top:-1.3rem;
+        padding-bottom:1rem;
+    }
+    div#hideShow.hideShow{
+        filter:brightness(70%);
+    }
+    #shtxt{
+        font-size:1.8rem;
+    }
+}
+@media(max-width:365px){
+    div#hideShow.hideShow{
+        margin-right:.5rem;
+    }
+}
+
+
+
 .myContainer{
     display: flex;
     height:fit-content;
@@ -51,14 +100,23 @@ h1 img{
 }
 #pendingTasks{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
     grid-gap:1rem;
     width:100%;
+}
+#details{
+    width:30%;
+    background-color: var(--sec-color);
+    padding:1rem;
+    margin-right:1rem;
+    height:fit-content;
+    border-radius:10px;
 }
 @media(max-width:768px){
     #pendingTasks{
         display:block;
         width:100%;
+        grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
     }
     .task-item{
         margin:1rem 0;
@@ -69,14 +127,18 @@ h1 img{
     #list{
         width:100%;
         order:2;
-        margin:1rem 0 0 0;
+        margin:0;
     }
     #details{
-        min-width:100%;
+        min-width:80%;
         order:1;
-        margin-right:0;
-        margin-top:-.75rem;
+        margin-right:auto;
+        margin-left:auto;
+        margin-top:0;
+        background-color:inherit;
+        padding:0;
         border:none;
+        
     }
     .myContainer{
         flex-direction:column;
@@ -89,30 +151,69 @@ h1 img{
     background-color:var(--bg-color);
     color:var(--txt-color);
     border-radius:10px;
-    min-height:200px;
+    min-height:80px;
+    height:fit-content;
+
+}
+.extraWrap{
+    display:flex;
 }
 .itemHeader{
     display:flex;
     justify-content: space-between;
-}
-.taskh5{
     flex:1;
-    font-;
+}
+.taskh5 h5{
+    flex:1;
+    font-size:2rem;
+}
+.itemDate{
+    text-align:right;
+    font-size:1.5rem;
+    margin-right:1rem;
+    margin-top:-.5rem;
+}
+.itemAlert{
+    font-size:1.8rem;
 }
 .taskIcon{
+    display:flex;
     text-align: right;
+    margin-left:auto;
+    margin-right:0;
+    font-size:25px;
+    cursor: pointer;
+    letter-spacing:.5rem;
+    color:var(--sec-color);
+}
+
+.iconAlertWrap{
+    display:flex;
+    justify-content: space-between;
+}
+.itemLoc{
+    display:none;
+    font-size:1.5rem;
+    padding:1rem;
 }
 .taskDesc{
     display:none;
+    padding:1rem;
+    margin-right:1.5rem;
 
 }
-#details{
-    width:30%;
-    background-color: var(--sec-color);
-    padding:1rem;
-    margin-right:1rem;
-    height:fit-content;
+div.iconExpand{
+    text-align:right;
 }
+.iconExpand i{
+    flex:0;
+    text-align: right;
+    font-size:25px;
+    cursor: pointer;
+    letter-spacing:.5rem;
+    color:var(--txt-color);
+}
+
 
 .unimportant{
     border:5px solid var(--third-color);
@@ -121,18 +222,6 @@ h1 img{
     border:5px solid #cd7e9c;
 }
 
-#iconImp{
-    font-size:25px;
-}
-#iconImp:hover{
-    cursor: pointer;
-}
-#iconImp.far{
-
-}
-#iconImp.fas{
-    color:#cd7e9c;
-}
 
 [type="date"] {
     background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
@@ -212,31 +301,7 @@ h1 img{
     background-color:rgb(255, 146, 146);
 
 }
-.hideShow:hover{
-    cursor:pointer;
-    text-shadow: 2px 2px 5px white, 2px 2px 5px white, 2px 2px 5px white, 2px 2px 5px white
-}
-.hideShow{
-    margin:-4.5rem 3rem 1.5rem auto;
-    text-align:right;
-    width:fit-content;
-}
-.hideShow img{
-    width:35px;
-}
-.hideShow span{
-    font-size:2rem;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-shadow: 2px 2px var(--bg-color);
-}
-@media(max-width:530px){
-    .hideShow{
-    }
-    h1{
-        padding-left:1rem;
-        text-align:left;
-    }
-}
+
 
 .importantToggle{
     display:flex;
