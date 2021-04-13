@@ -175,7 +175,7 @@ function displayTask(task) {
             <div class="taskh5"><h5>${task.title}</h5></div>
             <div class="itemDate">${bDate}</div>
         </div>
-        <div class="iconExpand"><i onclick="expTask(${task.id})" class="fas fa-eye-slash"></i></div>
+        <div id="${task.id}icon class="iconExpand"><i onclick="expTask(${task.id})" class="fas fa-eye-slash"></i></div>
         </div>
         <div class="iconAlertWrap">
         <div id="${task.id}alert" class="itemAlert">${task.alertText}</div>
@@ -183,7 +183,7 @@ function displayTask(task) {
         
         </div>
         
-        <div id="${task.id}loc" class="itemLoc"><i class="fas fa-map-marker"></i>${task.location} </div>
+        <div id="${task.id}loc" class="itemLoc"><i class="fas fa-map-marker"></i> ${task.location} </div>
         <div id="${task.id}desc" class="taskDesc">${task.description}</div>
     </div>
         `
@@ -195,7 +195,7 @@ function displayTask(task) {
             <div class="taskh5"><h5>${task.title}</h5></div>
             <div class="itemDate">${bDate}</div>
         </div>
-        <div class="iconExpand"><i onclick="expTask(${task.id})" class="fas fa-eye-slash"></i></div>
+        <div id="${task.id}icon class="iconExpand"><i onclick="expTask(${task.id})" class="fas fa-eye-slash"></i></div>
         </div>
         <div class="iconAlertWrap">
         <div id="${task.id}alert" class="itemAlert">${task.alertText}</div>
@@ -203,7 +203,7 @@ function displayTask(task) {
         
         </div>
         
-        <div id="${task.id}loc" class="itemLoc"><i class="fas fa-map-marker"></i>${task.location} </div>
+        <div id="${task.id}loc" class="itemLoc"><i class="fas fa-map-marker"></i> ${task.location} </div>
         <div id="${task.id}desc" class="taskDesc">${task.description}</div>
         </div>
         `
@@ -220,19 +220,23 @@ function expTask(id){
 for (var i = 0; i < myTasks.length; i++){
         let it = myTasks[i].id;
     if(id==it){
-        
+        var icon = `div#${id}icon.iconExpand`
         var loc = `div#${id}loc.itemLoc`;
         var desc = `div#${id}desc.taskDesc`; 
         var alert = `div#${id}alert.itemAlert`;
         console.log(alert,desc,loc)
         if($(desc).is(":visible")){
+        
         $(desc).hide();
         $(loc).hide();
         $(alert).show();
+        $(icon).addClass("fa-eye-slash").removeClass("fa-eye");
+        //fix this
     }    else{
         $(desc).show();
         $(loc).show();
         $(alert).hide();
+        $(icon).addClass("fa-eye").removeClass("fa-eye-slash");
     }
     }
 }}

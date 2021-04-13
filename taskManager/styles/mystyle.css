@@ -210,7 +210,6 @@ div.iconExpand{
     text-align: right;
     font-size:25px;
     cursor: pointer;
-    letter-spacing:.5rem;
     color:var(--txt-color);
 }
 
