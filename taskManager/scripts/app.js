@@ -123,7 +123,7 @@ function fetchTasks() {
         success: function (res) {
             for (let i = 0; i < res.length; i++) {
                 let task = res[i];
-                if (task.user === "NewStart") {
+                if (task.user === "AndrewEvans") {
                     displayTask(task);
                     myTasks.push(task);
                 }
@@ -169,7 +169,7 @@ function displayTask(task) {
     if(task.important===true){
 
         syntax=`
-        <div class="important task-item">
+        <div id="${task.id}z" class="important task-item">
         <div class="extraWrap">
         <div class="itemHeader">
             <div class="taskh5"><h5>${task.title}</h5></div>
@@ -179,7 +179,7 @@ function displayTask(task) {
         </div>
         <div class="iconAlertWrap">
         <div id="${task.id}alert" class="itemAlert">${task.alertText}</div>
-            <div class="taskIcon"><i class="fas fa-map-marker-alt"></i><i class="fas fa-star-half-alt"></i><i onclick="taskClick(${task.id})" class="fas fa-pen-square"></i></div>
+            <div class="taskIcon"><i class="fas fa-map-marker-alt"></i><i class="fas fa-star-half-alt"></i><i onclick="taskClick(${task.id})" class="fas fa-pen-square"></i><i onclick="deleteTask(${task.id})" class="fas fa-trash"></i></div>
         
         </div>
         
@@ -189,7 +189,7 @@ function displayTask(task) {
         `
     }else{
         syntax = `     
-        <div class="unimportant task-item">
+        <div id="${task.id}z" class="unimportant task-item">
         <div class="extraWrap">
         <div class="itemHeader">
             <div class="taskh5"><h5>${task.title}</h5></div>
@@ -199,7 +199,7 @@ function displayTask(task) {
         </div>
         <div class="iconAlertWrap">
         <div id="${task.id}alert" class="itemAlert">${task.alertText}</div>
-            <div class="taskIcon"><i class="fas fa-map-marker-alt"></i><i class="fas fa-star-half-alt"></i><i onclick="taskClick(${task.id})" class="fas fa-pen-square"></i></div>
+            <div class="taskIcon"><i class="fas fa-map-marker-alt"></i><i class="fas fa-star-half-alt"></i><i onclick="taskClick(${task.id})" class="fas fa-pen-square"></i><i onclick="deleteTask(${task.id})" class="fas fa-trash"></i></div>
         
         </div>
         
@@ -224,7 +224,6 @@ for (var i = 0; i < myTasks.length; i++){
         var loc = `div#${id}loc.itemLoc`;
         var desc = `div#${id}desc.taskDesc`; 
         var alert = `div#${id}alert.itemAlert`;
-        console.log(alert,desc,loc)
         if($(desc).is(":visible")){
         
         $(desc).hide();
@@ -242,10 +241,22 @@ for (var i = 0; i < myTasks.length; i++){
 }}
 
 
-
-
-
-
+function deleteTask(id) {
+    console.log("Task delete request sent for ID: ", id);
+    $.ajax({
+        type: "DELETE",
+        url: serverUrl + "/tasks/" + id,
+        success: function() {
+            console.log("Task deleted!");
+            $("#" + id).remove();
+            $("div#"+id+"z").hide();
+        },
+        error: function( errDetails ) {
+            console.error(errDetails)
+        }
+    });
+    
+}
 
 
 
